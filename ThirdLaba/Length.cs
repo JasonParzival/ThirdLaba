@@ -161,47 +161,133 @@ namespace ThirdLaba
 
         //---------------------------------------
         // сложение
-        /*public static Length operator +(Length instance, double number)
+        public static Length operator +(Length instance, int number)
         {
-            return new Length(instance.value + number, instance.type);
+            int result;
+            if (instance.type == MeasureType.de)
+            {
+                result = int.Parse(instance.value) + number;
+            }
+            else
+            {
+                result = int.Parse(instance.To(MeasureType.de).value) + number;
+            }
+
+            string final = result.ToString();
+            Length goal = new Length(final, MeasureType.de);
+
+            return new Length(goal.To(instance.type).value, instance.type);
         }
 
-        public static Length operator +(double number, Length instance)
+        public static Length operator +(int number, Length instance)
         {
             return instance + number;
         }
 
         // умножение
-        public static Length operator *(Length instance, double number)
+        public static Length operator *(Length instance, int number)
         {
-            return new Length(instance.value * number, instance.type); 
+            int result;
+            if (instance.type == MeasureType.de)
+            {
+                result = int.Parse(instance.value) * number;
+            }
+            else
+            {
+                result = int.Parse(instance.To(MeasureType.de).value) * number;
+            }
+
+            string final = result.ToString();
+            Length goal = new Length(final, MeasureType.de);
+
+            return new Length(goal.To(instance.type).value, instance.type); 
         }
 
-        public static Length operator *(double number, Length instance)
+        public static Length operator *(int number, Length instance)
         {
             return instance * number;
         }
 
         // вычитание
-        public static Length operator -(Length instance, double number)
+        public static Length operator -(Length instance, int number)
         {
-            return new Length(instance.value - number, instance.type); 
+            int result;
+            if (instance.type == MeasureType.de)
+            {
+                result = int.Parse(instance.value) - number;
+            }
+            else
+            {
+                result = int.Parse(instance.To(MeasureType.de).value) - number;
+            }
+
+            string final = result.ToString();
+            Length goal = new Length(final, MeasureType.de);
+
+            return new Length(goal.To(instance.type).value, instance.type);
         }
 
-        public static Length operator -(double number, Length instance)
+        public static Length operator -(int number, Length instance)
         {
             return instance - number;
         }
 
         // деление
-        public static Length operator /(Length instance, double number)
+        public static Length operator /(Length instance, int number)
         {
-            return new Length(instance.value / number, instance.type); 
+            int result;
+            if (instance.type == MeasureType.de)
+            {
+                result = int.Parse(instance.value) / number;
+            }
+            else
+            {
+                result = int.Parse(instance.To(MeasureType.de).value) / number;
+            }
+
+            string final = result.ToString();
+            Length goal = new Length(final, MeasureType.de);
+
+            return new Length(goal.To(instance.type).value, instance.type);
         }
 
-        public static Length operator /(double number, Length instance)
+        public static Length operator /(int number, Length instance)
         {
             return instance / number;
-        }*/
+        }
+
+        //----------------------------------------
+        // операции над другими измерениями
+        // сложение двух длин  
+        public static Length operator +(Length instance1, Length instance2)
+        {
+            int result = int.Parse(instance1.To(MeasureType.de).value) + int.Parse(instance2.To(MeasureType.de).value);
+            Length goal = new Length(result.ToString(), MeasureType.de);
+            return new Length(goal.To(instance1.type).value, instance1.type);
+        }
+
+        // вычитание двух длин
+        public static Length operator -(Length instance1, Length instance2)
+        {
+            int result = int.Parse(instance1.To(MeasureType.de).value) - int.Parse(instance2.To(MeasureType.de).value);
+            Length goal = new Length(result.ToString(), MeasureType.de);
+            return new Length(goal.To(instance1.type).value, instance1.type);
+        }
+
+        public static Length operator *(Length instance1, Length instance2)
+        {
+            int result = int.Parse(instance1.To(MeasureType.de).value) * int.Parse(instance2.To(MeasureType.de).value);
+            Length goal = new Length(result.ToString(), MeasureType.de);
+            return new Length(goal.To(instance1.type).value, instance1.type);
+        }
+
+        // вычитание двух длин
+        public static Length operator /(Length instance1, Length instance2)
+        {
+            int result = int.Parse(instance1.To(MeasureType.de).value) / int.Parse(instance2.To(MeasureType.de).value);
+            Length goal = new Length(result.ToString(), MeasureType.de);
+            return new Length(goal.To(instance1.type).value, instance1.type);
+        }
     }
 }
+        
