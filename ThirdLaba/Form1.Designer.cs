@@ -30,17 +30,22 @@
         {
             comboBox1 = new ComboBox();
             textFirst = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            textSecond = new TextBox();
+            textThird = new TextBox();
+            comboBoxFirst = new ComboBox();
+            comboBoxSecond = new ComboBox();
+            comboBoxThird = new ComboBox();
             SuspendLayout();
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(200, 35);
+            comboBox1.Items.AddRange(new object[] { "+", "-", "*", "/" });
+            comboBox1.Location = new Point(245, 36);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 0;
+            comboBox1.SelectedIndexChanged += onValueChanged;
             // 
             // textFirst
             // 
@@ -48,28 +53,60 @@
             textFirst.Name = "textFirst";
             textFirst.Size = new Size(125, 27);
             textFirst.TabIndex = 1;
+            textFirst.TextChanged += onValueChanged;
             // 
-            // textBox2
+            // textSecond
             // 
-            textBox2.Location = new Point(12, 55);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 2;
+            textSecond.Location = new Point(12, 66);
+            textSecond.Name = "textSecond";
+            textSecond.Size = new Size(125, 27);
+            textSecond.TabIndex = 2;
+            textSecond.TextChanged += onValueChanged;
             // 
-            // textBox3
+            // textThird
             // 
-            textBox3.Location = new Point(12, 104);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(339, 27);
-            textBox3.TabIndex = 3;
+            textThird.Location = new Point(12, 122);
+            textThird.Name = "textThird";
+            textThird.Size = new Size(339, 27);
+            textThird.TabIndex = 3;
+            // 
+            // comboBoxFirst
+            // 
+            comboBoxFirst.FormattingEnabled = true;
+            comboBoxFirst.Location = new Point(161, 11);
+            comboBoxFirst.Name = "comboBoxFirst";
+            comboBoxFirst.Size = new Size(58, 28);
+            comboBoxFirst.TabIndex = 4;
+            comboBoxFirst.SelectedIndexChanged += onValueChanged;
+            // 
+            // comboBoxSecond
+            // 
+            comboBoxSecond.FormattingEnabled = true;
+            comboBoxSecond.Location = new Point(161, 65);
+            comboBoxSecond.Name = "comboBoxSecond";
+            comboBoxSecond.Size = new Size(58, 28);
+            comboBoxSecond.TabIndex = 5;
+            comboBoxSecond.SelectedIndexChanged += onValueChanged;
+            // 
+            // comboBoxThird
+            // 
+            comboBoxThird.FormattingEnabled = true;
+            comboBoxThird.Location = new Point(377, 121);
+            comboBoxThird.Name = "comboBoxThird";
+            comboBoxThird.Size = new Size(58, 28);
+            comboBoxThird.TabIndex = 6;
+            comboBoxThird.SelectedIndexChanged += onValueChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(390, 153);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            ClientSize = new Size(447, 176);
+            Controls.Add(comboBoxThird);
+            Controls.Add(comboBoxSecond);
+            Controls.Add(comboBoxFirst);
+            Controls.Add(textThird);
+            Controls.Add(textSecond);
             Controls.Add(textFirst);
             Controls.Add(comboBox1);
             Name = "Form1";
@@ -82,7 +119,10 @@
 
         private ComboBox comboBox1;
         private TextBox textFirst;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox textSecond;
+        private TextBox textThird;
+        private ComboBox comboBoxFirst;
+        private ComboBox comboBoxSecond;
+        private ComboBox comboBoxThird;
     }
 }

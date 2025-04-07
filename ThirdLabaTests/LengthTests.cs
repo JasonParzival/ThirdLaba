@@ -15,9 +15,8 @@ namespace ThirdLaba.Tests
         [TestMethod()]
         public void VerboseTest()
         {
-            //int CoolValue = int.Parse("-5");
-            //Length.DeToAny("-5", 2)
-            Assert.AreEqual("7", Length.AnyToDe("12AB", 16));
+            var length = new Length("10", MeasureType.de);
+            Assert.AreEqual("10(10)", length.Verbose());
         }
 
         [TestMethod()]
@@ -82,6 +81,14 @@ namespace ThirdLaba.Tests
             var length = new Length("22", MeasureType.de);
             length = length / 2;
             Assert.AreEqual("11(10)", length.Verbose());
+        }
+
+        [TestMethod()]
+        public void Di12vByNumberTest()
+        {
+            var length = new Length("22", MeasureType.de);
+            length = length / 2;
+            Assert.AreEqual("11", length.GetValue());
         }
 
         [TestMethod()]

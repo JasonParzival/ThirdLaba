@@ -41,6 +41,12 @@ namespace ThirdLaba
             return this.value + typeVerbose;
         }
 
+        //Вывод только значения
+        public string GetValue()
+        {
+            return this.value;
+        }
+
         //Перевод из десятичного в любой
         public static string DeToAny(string value, int num)
         {
@@ -274,6 +280,7 @@ namespace ThirdLaba
             return new Length(goal.To(instance1.type).value, instance1.type);
         }
 
+        // умножение двух длин
         public static Length operator *(Length instance1, Length instance2)
         {
             int result = int.Parse(instance1.To(MeasureType.de).value) * int.Parse(instance2.To(MeasureType.de).value);
@@ -281,7 +288,7 @@ namespace ThirdLaba
             return new Length(goal.To(instance1.type).value, instance1.type);
         }
 
-        // вычитание двух длин
+        // сравнение двух длин
         public static Length operator /(Length instance1, Length instance2)
         {
             int result = int.Parse(instance1.To(MeasureType.de).value) / int.Parse(instance2.To(MeasureType.de).value);
