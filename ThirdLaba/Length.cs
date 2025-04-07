@@ -41,6 +41,7 @@ namespace ThirdLaba
             return this.value + typeVerbose;
         }
 
+        //Перевод из десятичного в любой
         public static string DeToAny(string value, int num)
         {
             int CoolValue = int.Parse(value);
@@ -73,51 +74,82 @@ namespace ThirdLaba
             return result.ToString();
         }
 
+        //Перевод из любого в десятичный
+        public static string AnyToDe(string value, int num)
+        {
+            int CoolValue = 0;
+            bool negative = false;
+
+            if (value.StartsWith("-"))
+            {
+                value = value.Substring(1);
+                negative = true;
+            }
+            if (value == "0")
+            {
+                return "0";
+            }
+
+            const string digits = "0123456789ABCDEF";
+
+            foreach (char c in value)
+            {
+                int digit = digits.IndexOf(char.ToUpper(c));
+                if (digit == -1 || digit >= num)
+                    return "Неправильный ввод";
+
+                CoolValue = CoolValue * num + digit;
+            }
+
+            StringBuilder result = new StringBuilder(CoolValue.ToString());
+
+            if (negative)
+            {
+                result.Insert(0, "-");
+            }
+
+            return result.ToString();
+        }
+
+
         // Измерения
         public Length To(MeasureType newType)
         {
-            // по умолчанию новое значение совпадает со старым
             var newValue = this.value;
-            // если текущий тип -- это метр
             if (this.type == MeasureType.de)
             {
-                // а теперь рассматриваем все другие ситуации
                 switch (newType)
                 {
-                    // если конвертим в метр, то значение не меняем
                     case MeasureType.de:
                         newValue = this.value;
                         break;
-                    // если в км.
-                    /*case MeasureType.bi:
-                        newValue = this.value / 1000;
+                    case MeasureType.bi:
+                        newValue = DeToAny(this.value, 2);
                         break;
-                    // если в  а.е.
                     case MeasureType.oc:
-                        newValue = this.value / 149597870700;
+                        newValue = DeToAny(this.value, 8);
                         break;
-                    // если в парсек
                     case MeasureType.he:
-                        newValue = this.value / (3.0856776 * Math.Pow(10, 16));
-                        break;*/
+                        newValue = DeToAny(this.value, 16);
+                        break;
                 }
             }
-            else if (newType == MeasureType.de) // если новый тип: метр
+            else if (newType == MeasureType.de)
             {
-                switch (this.type) // а тут уже старый тип проверяем
+                switch (this.type) 
                 {
                     case MeasureType.de:
                         newValue = this.value;
                         break;
-                    /*case MeasureType.km:
-                        newValue = this.value * 1000; // кстати это то же код что и выше, только / заменили на *
+                    case MeasureType.bi:
+                        newValue = AnyToDe(this.value, 2);
                         break;
-                    case MeasureType.au:
-                        newValue = this.value * 149597870700; // и тут / на *
+                    case MeasureType.oc:
+                        newValue = AnyToDe(this.value, 8);
                         break;
-                    case MeasureType.ps:
-                        newValue = this.value * (3.0856776 * Math.Pow(10, 16)); // и даже тут, просто / на *
-                        break;*/
+                    case MeasureType.he:
+                        newValue = AnyToDe(this.value, 16);
+                        break;
                 }
             }
             else 
