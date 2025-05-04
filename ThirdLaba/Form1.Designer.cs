@@ -110,7 +110,7 @@
             Controls.Add(textFirst);
             Controls.Add(comboBox1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "3 Лаб.Работа, №6 вариант";
             ResumeLayout(false);
             PerformLayout();
         }

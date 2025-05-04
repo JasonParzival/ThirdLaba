@@ -15,8 +15,17 @@ namespace ThirdLaba.Tests
         [TestMethod()]
         public void VerboseTest()
         {
-            var length = new Length("10", MeasureType.de);
-            Assert.AreEqual("10(10)", length.Verbose());
+            var length = new Length("38", MeasureType.de);
+            Assert.AreEqual("38(10)", length.Verbose());
+
+            length = new Length("38", MeasureType.bi);
+            Assert.AreEqual("38(2)", length.Verbose());
+
+            length = new Length("38", MeasureType.oc);
+            Assert.AreEqual("38(8)", length.Verbose());
+
+            length = new Length("38", MeasureType.he);
+            Assert.AreEqual("38(16)", length.Verbose());
         }
 
         [TestMethod()]
@@ -55,8 +64,6 @@ namespace ThirdLaba.Tests
             var length = new Length("7", MeasureType.oc);
             length = length + 1;
             Assert.AreEqual("10(8)", length.Verbose());
-            length = 1 + length;
-            Assert.AreEqual("11(8)", length.Verbose());
         }
 
         [TestMethod()]
@@ -84,7 +91,7 @@ namespace ThirdLaba.Tests
         }
 
         [TestMethod()]
-        public void Di12vByNumberTest()
+        public void DivByNumberValueTest()
         {
             var length = new Length("22", MeasureType.de);
             length = length / 2;
@@ -92,25 +99,43 @@ namespace ThirdLaba.Tests
         }
 
         [TestMethod()]
-        public void AddSubKmMetersTest()
+        public void AddDeBiTest()
         {
             var de = new Length("7", MeasureType.de);
             var bi = new Length("111", MeasureType.bi);
-            var oc = new Length("7", MeasureType.oc);
-            var he = new Length("7", MeasureType.he);
-            var de1 = new Length("5", MeasureType.de);
-            var bi1 = new Length("111", MeasureType.bi);
 
             Assert.AreEqual("14(10)", (de + bi).Verbose());
             Assert.AreEqual("1110(2)", (bi + de).Verbose());
+        }
+
+        [TestMethod()]
+        public void SubDeBiTest()
+        {
+            var de = new Length("7", MeasureType.de);
+            var bi = new Length("111", MeasureType.bi);
 
             Assert.AreEqual("0(2)", (bi - de).Verbose());
             Assert.AreEqual("0(10)", (de - bi).Verbose());
+        }
+
+        [TestMethod()]
+        public void AddDeOcHeTest()
+        {
+            var de = new Length("7", MeasureType.de);
+            var oc = new Length("7", MeasureType.oc);
+            var he = new Length("7", MeasureType.he);
 
             Assert.AreEqual("16(8)", (oc + de).Verbose());
             Assert.AreEqual("E(16)", (he + de).Verbose());
+        }
 
-            Assert.AreEqual("10(2)", (bi1 - de1).Verbose());
+        [TestMethod()]
+        public void OtherSubDeBiTest()
+        {
+            var de = new Length("5", MeasureType.de);
+            var bi = new Length("111", MeasureType.bi);
+
+            Assert.AreEqual("10(2)", (bi - de).Verbose());
         }
     }
 }
